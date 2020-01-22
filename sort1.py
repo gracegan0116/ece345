@@ -2,22 +2,26 @@
 import csv
 
 
-def insertion_sort(file):
-    csv_data = []
-
-    # stores csv file to dict
+def csv_to_list(file) -> list:
+    csv_list = []
+    # stores csv file to list
     with open(file) as csv_file:
         csv_reader = csv.reader(csv_file)
         for row in csv_reader:
-            csv_data.append(row)
+            csv_list.append(row)
+    return csv_list
 
-    # insertion sort
-    for i in range(1, len(csv_data)):
-        (sort_key, values) = (csv_data[i][0], csv_data[i])
+
+def insertion_sort(arr):
+    for i in range(1, len(arr)):
+        (sort_key, values) = (arr[i][0], arr[i])
         j = i - 1
-        while j >= 0 and csv_data[j][0] > sort_key:
-            csv_data[j+1] = csv_data[j]
+        while j >= 0 and arr[j][0] > sort_key:
+            arr[j + 1] = arr[j]
             j -= 1
-        csv_data[j+1] = values
+        arr[j + 1] = values
 
-insertion_sort('a1.small.csv')
+
+csv_data = csv_to_list('a1.small.csv')
+insertion_sort(csv_data)
+print(csv_data)
