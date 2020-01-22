@@ -1,5 +1,6 @@
 # Insertion Sort
 import csv
+import sys
 
 
 def csv_to_list(file) -> list:
@@ -22,6 +23,9 @@ def insertion_sort(arr):
         arr[j + 1] = values
 
 
-csv_data = csv_to_list('a1.small.csv')
-insertion_sort(csv_data)
-print(csv_data)
+if __name__ == "__main__":
+	inputfile = (sys.argv[1])
+	csv_data = csv_to_list(inputfile+'.csv')
+	insertion_sort(csv_data)
+	for item in csv_data:
+		print(item)
