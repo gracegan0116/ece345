@@ -1,5 +1,6 @@
 # Merge Sort
 import csv
+import sys
 
 
 def csv_to_list(file) -> list:
@@ -44,7 +45,10 @@ def merge_sort(arr, left, right):
         merge_sort(arr, mid+1, right)
         merge(arr, left, mid, right)
 
-
-csv_data = csv_to_list('a1.small.csv')
-merge_sort(csv_data, 0, len(csv_data)-1)
-print(csv_data)
+        
+if __name__ == "__main__":
+	inputfile = (sys.argv[1])
+	csv_data = csv_to_list(inputfile+'.csv')
+	merge_sort(csv_data, 0, len(csv_data)-1)
+	for item in csv_data:
+		print(item)
