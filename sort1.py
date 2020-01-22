@@ -3,7 +3,7 @@ import csv
 import sys
 
 
-def csv_to_list(file) -> list:
+def csv_to_list(file):
     csv_list = []
     # stores csv file to list
     with open(file) as csv_file:
