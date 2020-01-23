@@ -37,8 +37,7 @@ if __name__ == "__main__":
         arr = list()
         for row in spamreader:
             arr.append(row)
-    result = ['911','215455426']
-    pancakeSort(result)
+    pancakeSort(arr)
     for i in range (0,len(arr)):
-        print(arr[i][0])
+        print(arr[i])
     

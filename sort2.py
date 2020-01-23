@@ -21,7 +21,7 @@ def merge(arr, left, mid, right):
     i, j = 0, 0
     k = left
     while i < len(left_list) and j < len(right_list):
-        if left_list[i][0] <= right_list[j][0]:
+        if int(left_list[i][0]) <= int(right_list[j][0]):
             arr[k] = left_list[i]
             i += 1
         else:
@@ -42,13 +42,13 @@ def merge_sort(arr, left, right):
     if left < right:
         mid = (left+right) // 2
         merge_sort(arr, left, mid)
-        merge_sort(arr, mid+1, right)
+        merge_sort(arr, mid + 1, right)
         merge(arr, left, mid, right)
 
-        
+
 if __name__ == "__main__":
-	inputfile = (sys.argv[1])
-	csv_data = csv_to_list(inputfile+'.csv')
-	merge_sort(csv_data, 0, len(csv_data)-1)
-	for item in csv_data:
-		print(item)
+    inputfile = (sys.argv[1])
+    csv_data = csv_to_list(inputfile + '.csv')
+    merge_sort(csv_data, 0, len(csv_data) - 1)
+    for item in csv_data:
+        print(item)
