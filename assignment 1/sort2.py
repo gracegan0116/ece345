@@ -1,12 +1,13 @@
 # Merge Sort
 import csv
 import sys
+import time
 
 
 def csv_to_list(file):
     csv_list = []
     # stores csv file to list
-    with open(file) as csv_file:
+    with open(file, encoding='utf-8-sig') as csv_file:
         csv_reader = csv.reader(csv_file)
         for row in csv_reader:
             csv_list.append(row)
@@ -47,8 +48,9 @@ def merge_sort(arr, left, right):
 
 
 if __name__ == "__main__":
-    inputfile = (sys.argv[1])
+    # inputfile = (sys.argv[1])
+    inputfile = 'a1.large'
     csv_data = csv_to_list(inputfile + '.csv')
+    start_time = time.time()
     merge_sort(csv_data, 0, len(csv_data) - 1)
-    for item in csv_data:
-        print(item)
+    print("My program took", time.time() - start_time, "to run")
