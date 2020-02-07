@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 from linked_list import LinkedList
 import sys
 
@@ -52,6 +53,7 @@ def checkpass(file, new_password):
 
     # if valid add to file
     passwords_table[index].insert_at_end(new_password)
+    password_file.write(new_password+"\n")
     print("VALID")
 
 
