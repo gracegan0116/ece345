@@ -31,7 +31,7 @@ class LinkedList:
     def check_duplicate(self, password):
         n = self.start_node
         while n is not None:
-            if n.item == password[1::] or n.item == password[:0:-1]:
+            if n.item == password:
                 return True
             n = n.ref
         return False
