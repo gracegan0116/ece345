@@ -22,17 +22,6 @@ def checkpass(file, new_password):
             index = ord(first_char) - 48
             passwords_table[index].insert_at_end(password[1::])
 
-        last_char = password[-1]
-        if last_char.islower():
-            index = ord(last_char) - 61
-            passwords_table[index].insert_at_end(password[-2::-1])
-        elif last_char.isupper():
-            index = ord(last_char) - 55
-            passwords_table[index].insert_at_end(password[-2::-1])
-        else:
-            index = ord(last_char) - 48
-            passwords_table[index].insert_at_end(password[-2::-1])
-
     # check if new_password is valid
     # 1. check length (valid length: 6-12)
     length = len(new_password)

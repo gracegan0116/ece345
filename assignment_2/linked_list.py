@@ -9,14 +9,16 @@ class LinkedList:
         self.start_node = None
 
     def traverse_list(self):
+        result = []
         if self.start_node is None:
             print("List has no element")
             return
         else:
             n = self.start_node
             while n is not None:
-                print(n.item, " ")
+                result.append(n.item)
                 n = n.ref
+        return result
 
     def insert_at_end(self, data):
         new_node = Node(data)
