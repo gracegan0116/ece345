@@ -36,7 +36,7 @@ def checkpass(file, new_password):
     # 3. check duplicate
     first_char = new_password[0]
     if first_char.islower():
-        index = ord(first_char) - 61
+        index = ord(first_char) - 87
         check1 = passwords_table[index].check_duplicate(new_password[1::])
     elif first_char.isupper():
         index = ord(first_char) - 55
@@ -51,7 +51,7 @@ def checkpass(file, new_password):
     # 4. check reverse duplicate
     last_char = new_password[-1]
     if last_char.islower():
-        index = ord(last_char) - 61
+        index = ord(last_char) - 87
         check2 = passwords_table[index].check_duplicate(new_password[-2::-1])
     elif last_char.isupper():
         index = ord(last_char) - 55
@@ -67,6 +67,18 @@ def checkpass(file, new_password):
     passwords_table[index].insert_at_end(new_password)
     password_file.write(new_password+"\n")
     print("VALID")
+
+    count = 0
+    for x in range (0,len(passwords_table)):
+        current = passwords_table[x].traverse_list()
+        if len(current) > 1:
+            count = count + len(current) - 1
+        
+    print(count)
+        
+
+
+
 
 
 if __name__ == "__main__":
