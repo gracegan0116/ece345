@@ -23,31 +23,33 @@ def dijkstra_algo (graph, vertices, deadline):
     # a distance array to store the [time to reach to vertex, parent vertex]
     parent = -1
     distance = [[float("Inf"),parent]] * row
-
+    # initial the first vertex to compute be vertices[0] as source
+    u = list(vertices)[0]
+    distance[u] = [0.-1]
 
     # Q_set is used to store the vertices that haven't been visited
     for item in vertices:
         Q_set.add(item)
     
-    # while Q_set is not None and time <= deadline:
-    u = ExtractMin(Q_set)
+    # while Q_set is not None:
+    u = ExtractMin(distance, Q_set)
     Q_set.remove(u)
     S_set.add(u)
-    distance[u] = [0,-1]
     i = 0
     for adjacent_v in graph[u]:
+        # make sure it has edge between u and v in directed graph
         if (adjacent_v != 0):
             if distance[i][0] > (distance[u][0] + adjacent_v):
                 distance[i] = [distance[u][0] + adjacent_v, u]
         i = i + 1
 
-    print(distance)
-
-def ExtractMin(Q_set):
-    return (min(Q_set))
-
-
-
+def ExtractMin(distance, Q_set):
+    index = -1
+    minimum = float("Inf")
+    for i in range (0, len(distance)):
+        if distance[i][0] < minimum:
+            index = i
+    return index
 
 
 if __name__ == "__main__":
