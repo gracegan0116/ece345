@@ -25,29 +25,31 @@ def dijkstra_algo (graph, vertices, deadline):
     distance = [[float("Inf"),parent]] * row
     # initial the first vertex to compute be vertices[0] as source
     u = list(vertices)[0]
-    distance[u] = [0.-1]
+    distance[u] = [0,-1]
 
     # Q_set is used to store the vertices that haven't been visited
     for item in vertices:
         Q_set.add(item)
     
-    # while Q_set is not None:
-    u = ExtractMin(distance, Q_set)
-    Q_set.remove(u)
-    S_set.add(u)
-    i = 0
-    for adjacent_v in graph[u]:
-        # make sure it has edge between u and v in directed graph
-        if (adjacent_v != 0):
-            if distance[i][0] > (distance[u][0] + adjacent_v):
-                distance[i] = [distance[u][0] + adjacent_v, u]
-        i = i + 1
+    while Q_set is not None:
+        u = ExtractMin(distance, Q_set)
+        if u == -1: break
+        Q_set.remove(u)
+        S_set.add(u)
+        i = 0
+        for adjacent_v in graph[u]:
+            # make sure it has edge between u and v in directed graph
+            if (adjacent_v != 0):
+                if distance[i][0] > (distance[u][0] + adjacent_v):
+                    distance[i] = [distance[u][0] + adjacent_v, u]
+            i = i + 1
+    print(distance[66])
 
 def ExtractMin(distance, Q_set):
     index = -1
     minimum = float("Inf")
     for i in range (0, len(distance)):
-        if distance[i][0] < minimum:
+        if distance[i][0] < minimum and i in Q_set:
             index = i
     return index
 
