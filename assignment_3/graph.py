@@ -42,10 +42,18 @@ def dijkstra_algo (graph, vertices, deadline):
                 # make sure it has edge between u and v in directed graph
                 if (adjacent_v != 0):
                     if distance[i][0] > (distance[u][0] + adjacent_v):
-                        distance[i] = [distance[u][0] + adjacent_v, u]
+                        distance[i] = [distance[u][0] + adjacent_v, u] 
                 i = i + 1
-        print(distance)
-
+        
+        j = 0
+        while j < len(distance):
+            if distance[j][0] < deadline:
+                spread = Top_1_Influencer(distance, j)
+            j = j + 1
+            if spread > count:
+                count = spread
+    print(count)
+        
 
 def ExtractMin(distance, Q_set):
     index = -1
@@ -55,10 +63,17 @@ def ExtractMin(distance, Q_set):
             index = i
     return index
 
+def Top_1_Influencer(distance, j):
+    spread = 1
+    while j != -1:
+        if distance[j][1] != -1:
+            spread = spread + 1
+        j = distance[j][1]
+    return spread
 
 if __name__ == "__main__":
     inputfile = "facebook_small.txt"
-    deadline = 10
+    deadline = 3
     graph = np.zeros((500,500))
     vertices = generate_graph(inputfile, graph)
     dijkstra_algo(graph, vertices, deadline)
