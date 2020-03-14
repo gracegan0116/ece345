@@ -20,30 +20,32 @@ def dijkstra_algo (graph, vertices, deadline):
     time = 0
     count = 0
 
-    # a distance array to store the [time to reach to vertex, parent vertex]
-    parent = -1
-    distance = [[float("Inf"),parent]] * row
-    # initial the first vertex to compute be vertices[0] as source
-    u = list(vertices)[0]
-    distance[u] = [0,-1]
+    for vertex in vertices:
+        # a distance array to store the [time to reach to vertex, parent vertex]
+        parent = -1
+        distance = [[float("Inf"),parent]] * row
+        # initial the first vertex to compute be vertices[0] as source
+        u = vertex
+        distance[u] = [0,-1]
 
-    # Q_set is used to store the vertices that haven't been visited
-    for item in vertices:
-        Q_set.add(item)
-    
-    while Q_set is not None:
-        u = ExtractMin(distance, Q_set)
-        if u == -1: break
-        Q_set.remove(u)
-        S_set.add(u)
-        i = 0
-        for adjacent_v in graph[u]:
-            # make sure it has edge between u and v in directed graph
-            if (adjacent_v != 0):
-                if distance[i][0] > (distance[u][0] + adjacent_v):
-                    distance[i] = [distance[u][0] + adjacent_v, u]
-            i = i + 1
-    print(distance[66])
+        # Q_set is used to store the vertices that haven't been visited
+        for item in vertices:
+            Q_set.add(item)
+        
+        while Q_set is not None:
+            u = ExtractMin(distance, Q_set)
+            if u == -1: break
+            Q_set.remove(u)
+            S_set.add(u)
+            i = 0
+            for adjacent_v in graph[u]:
+                # make sure it has edge between u and v in directed graph
+                if (adjacent_v != 0):
+                    if distance[i][0] > (distance[u][0] + adjacent_v):
+                        distance[i] = [distance[u][0] + adjacent_v, u]
+                i = i + 1
+        print(distance)
+
 
 def ExtractMin(distance, Q_set):
     index = -1
