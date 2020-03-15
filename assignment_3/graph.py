@@ -19,6 +19,7 @@ def dijkstra_algo (graph, vertices, deadline):
     # use to count for the time and node number
     time = 0
     count = 0
+    spread = 0
 
     for vertex in vertices:
         # a distance array to store the [time to reach to vertex, parent vertex]
@@ -38,22 +39,21 @@ def dijkstra_algo (graph, vertices, deadline):
             Q_set.remove(u)
             S_set.add(u)
             i = 0
+            
             for adjacent_v in graph[u]:
                 # make sure it has edge between u and v in directed graph
                 if (adjacent_v != 0):
                     if distance[i][0] > (distance[u][0] + adjacent_v):
                         distance[i] = [distance[u][0] + adjacent_v, u] 
                 i = i + 1
-        
         j = 0
         while j < len(distance):
-            if distance[j][0] < deadline:
+            if distance[j][0] <= deadline:
                 spread = Top_1_Influencer(distance, j)
             j = j + 1
             if spread > count:
                 count = spread
     print(count)
-        
 
 def ExtractMin(distance, Q_set):
     index = -1
@@ -61,6 +61,7 @@ def ExtractMin(distance, Q_set):
     for i in range (0, len(distance)):
         if distance[i][0] < minimum and i in Q_set:
             index = i
+            minimum = distance[i][0]
     return index
 
 def Top_1_Influencer(distance, j):
@@ -72,8 +73,8 @@ def Top_1_Influencer(distance, j):
     return spread
 
 if __name__ == "__main__":
-    inputfile = "facebook_small.txt"
-    deadline = 3
-    graph = np.zeros((500,500))
+    inputfile = "test.txt"
+    deadline = 7
+    graph = np.zeros((10,10))
     vertices = generate_graph(inputfile, graph)
     dijkstra_algo(graph, vertices, deadline)
