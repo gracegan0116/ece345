@@ -2,7 +2,7 @@ from random import randint
 from random import random
 
 if __name__ == "__main__":
-    f = open("textnode_1.txt", "w")
+    f = open("textnode_10.txt", "w")
 
     edge = randint(2,10)
 
