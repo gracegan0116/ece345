@@ -1,4 +1,7 @@
+#!/usr/bin/env python3
 import numpy as np
+import sys
+import time
 
 def generate_graph (inputfile, graph):
     f = open(inputfile, "r")
@@ -61,8 +64,9 @@ def dijkstra_algo (graph, vertices, deadline):
         if count > spread:
             spread = count
             source_node = vertex
+    return source_node, spread
     
-    print("TOP-1 INFLUENCER: " + str(source_node) + " SPREAD:" + str(spread) + " TIME:" + str(time) + " sec")
+
 
 def ExtractMin(distance, Q_set):
     index = -1
@@ -83,8 +87,11 @@ def Top_1_Influencer(distance, j):
     return spread
 
 if __name__ == "__main__":
-    inputfile = "facebook_small.txt"
-    deadline = 7
-    graph = np.zeros((500,500))
-    vertices = generate_graph(inputfile, graph)
-    dijkstra_algo(graph, vertices, deadline)
+    start = time.time()
+    input_file = sys.argv[1]
+    deadline = sys.argv[2]
+    graph = np.zeros((500, 500))
+    vertices = generate_graph(input_file, graph)
+    source_node, spread = dijkstra_algo(graph, vertices, deadline)
+    end = time.time()
+    print("TOP-1 INFLUENCER: " + str(source_node) + " SPREAD:" + str(spread) + " TIME:" + str(end-start) + " sec")

@@ -1,4 +1,6 @@
 from collections import defaultdict
+import sys
+import time
 
 class Node:
     def __init__(self, node_num, weight):
@@ -57,11 +59,13 @@ def Top_2_Influencer(graph, deadline):
 
 
 if __name__ == '__main__':
-    inputfile = "test.txt"
-    deadline = 3
+    start = time.time()
+    input_file = sys.argv[1]
+    deadline = sys.argv[2]
     # Build graph dictionary
-    graph = generate_graph(inputfile)
+    graph = generate_graph(input_file)
     # Run DFS, compute longest path
     node, spread = Top_2_Influencer(graph, deadline)
-    print(node, spread)
+    end = time.time()
+    print("TOP-2 INFLUENCER: " + str(node) + " SPREAD:" + str(spread) + " TIME:" + str(end-start) + " sec")
 
