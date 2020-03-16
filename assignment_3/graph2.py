@@ -47,13 +47,12 @@ def Top_2_Influencer(graph, deadline):
     # finding top 2 influencer
     top_two_node = -1
     top_two_len = -1
-    for node in list(graph.keys()):
-        path = get_longest_path(graph, node, deadline, list(top_one_path))
-        if len(path) > 1:
-            path = path[0]
-        if path and len(path)>top_two_len:
+    for node in list(paths.keys()):
+        path = paths[node][1]
+        result = [x for x in path if x not in top_one_path]
+        if path and len(result)>top_two_len:
             top_two_node = node
-            top_two_len = len(path)
+            top_two_len = len(result)
     return top_two_node,top_two_len
 
 
@@ -61,7 +60,7 @@ def Top_2_Influencer(graph, deadline):
 if __name__ == '__main__':
     start = time.time()
     input_file = sys.argv[1]
-    deadline = sys.argv[2]
+    deadline = int(sys.argv[2])
     # Build graph dictionary
     graph = generate_graph(input_file)
     # Run DFS, compute longest path
